@@ -25,8 +25,13 @@ variable "dashboard_name" {
 }
 
 variable "dashboard_body" {
-  description = "Detailed information about the dashboard, including widgets and layout, as a JSON string."
+  description = "Detailed information about the dashboard, including widgets and layout, as a valid JSON string."
   type        = string
+
+  validation {
+    condition     = can(jsondecode(var.dashboard_body))
+    error_message = "dashboard_body must be valid JSON."
+  }
 }
 
 # -----------------------------------------------------------------------------

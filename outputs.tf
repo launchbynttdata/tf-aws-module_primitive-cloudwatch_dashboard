@@ -26,6 +26,6 @@ output "arn" {
 }
 
 output "dashboard_body" {
-  description = "The dashboard body JSON."
-  value       = aws_cloudwatch_dashboard.dashboard.dashboard_body
+  description = "The dashboard body JSON in canonical form."
+  value       = jsonencode(jsondecode(aws_cloudwatch_dashboard.dashboard.dashboard_body))
 }

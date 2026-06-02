@@ -12,7 +12,7 @@
 
 output "region" {
   description = "The AWS region where resources are deployed."
-  value       = data.aws_region.current.name
+  value       = data.aws_region.current.region
 }
 
 output "id" {
