@@ -73,7 +73,7 @@ module "dashboard" {
 |------|-------------|
 | <a name="output_arn"></a> [arn](#output\_arn) | The ARN of the dashboard. |
 | <a name="output_dashboard_body"></a> [dashboard\_body](#output\_dashboard\_body) | The dashboard body JSON configured by the module. |
-| <a name="output_id"></a> [id](#output\_id) | The ID of the dashboard. |
+| <a name="output_id"></a> [id](#output\_id) | The ID of the dashboard (same as the name). |
 | <a name="output_name"></a> [name](#output\_name) | The name of the dashboard. |
 | <a name="output_region"></a> [region](#output\_region) | The AWS region where resources are deployed. |
 <!-- END_TF_DOCS -->

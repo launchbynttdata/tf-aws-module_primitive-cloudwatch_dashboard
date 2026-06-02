@@ -12,11 +12,11 @@
 
 output "region" {
   description = "The AWS region where resources are deployed."
-  value       = data.aws_region.current.region
+  value       = coalesce(var.region, data.aws_region.current.region)
 }
 
 output "id" {
-  description = "The ID of the dashboard."
+  description = "The ID of the dashboard (same as the name)."
   value       = module.dashboard.id
 }
 
