@@ -76,7 +76,7 @@ func TestComposableComplete(t *testing.T, ctx types.TestContext) {
 			DashboardName: aws.String(dashboardName),
 		})
 		require.NoError(t, err, "GetDashboard after PutDashboard should succeed")
-		assert.Equal(t, updatedBody, normalizeDashboardBody(t, aws.ToString(output.DashboardBody)), "dashboard body should reflect PutDashboard update")
+		assert.Equal(t, normalizeDashboardBody(t, updatedBody), normalizeDashboardBody(t, aws.ToString(output.DashboardBody)), "dashboard body should reflect PutDashboard update")
 	})
 }
 

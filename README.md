@@ -41,7 +41,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_dashboard_body"></a> [dashboard\_body](#input\_dashboard\_body) | Detailed information about the dashboard, including widgets and layout, as a JSON string. | `string` | n/a | yes |
+| <a name="input_dashboard_body"></a> [dashboard\_body](#input\_dashboard\_body) | Detailed information about the dashboard, including widgets and layout, as a valid JSON string. | `string` | n/a | yes |
 | <a name="input_dashboard_name"></a> [dashboard\_name](#input\_dashboard\_name) | Name of the CloudWatch dashboard. Must be unique per account and region. Maximum 255 characters. | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | AWS region where the dashboard is managed. Defaults to the provider region when null. | `string` | `null` | no |
 
@@ -50,7 +50,7 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_arn"></a> [arn](#output\_arn) | The ARN of the dashboard. |
-| <a name="output_dashboard_body"></a> [dashboard\_body](#output\_dashboard\_body) | The dashboard body JSON. |
+| <a name="output_dashboard_body"></a> [dashboard\_body](#output\_dashboard\_body) | The dashboard body JSON in canonical form. |
 | <a name="output_id"></a> [id](#output\_id) | The ID of the dashboard (same as the name). |
 | <a name="output_name"></a> [name](#output\_name) | The name of the dashboard. |
 <!-- END_TF_DOCS -->
