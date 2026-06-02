@@ -41,12 +41,18 @@ module "dashboard" {
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.10 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.100, < 7.0 |
 
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.47.0 |
+
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_dashboard"></a> [dashboard](#module\_dashboard) | ../.. | n/a |
 | <a name="module_resource_names"></a> [resource\_names](#module\_resource\_names) | terraform.registry.launch.nttdata.com/module_library/resource_name/launch | ~> 2.0 |
+| <a name="module_dashboard"></a> [dashboard](#module\_dashboard) | ../.. | n/a |
 
 ## Resources
 
@@ -58,22 +64,22 @@ module "dashboard" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_class_env"></a> [class\_env](#input\_class\_env) | Class environment for resource naming. | `string` | n/a | yes |
-| <a name="input_dashboard_body"></a> [dashboard\_body](#input\_dashboard\_body) | Detailed information about the dashboard, including widgets and layout, as a JSON string. | `string` | n/a | yes |
-| <a name="input_instance_env"></a> [instance\_env](#input\_instance\_env) | Instance environment number for resource naming. | `number` | n/a | yes |
-| <a name="input_instance_resource"></a> [instance\_resource](#input\_instance\_resource) | Instance resource number for resource naming. | `number` | n/a | yes |
+| <a name="input_resource_names_map"></a> [resource\_names\_map](#input\_resource\_names\_map) | Map of resource names for the resource naming module. | <pre>map(object({<br/>    name       = string<br/>    max_length = number<br/>  }))</pre> | n/a | yes |
 | <a name="input_logical_product_family"></a> [logical\_product\_family](#input\_logical\_product\_family) | Logical product family for resource naming. | `string` | n/a | yes |
 | <a name="input_logical_product_service"></a> [logical\_product\_service](#input\_logical\_product\_service) | Logical product service for resource naming. | `string` | n/a | yes |
+| <a name="input_class_env"></a> [class\_env](#input\_class\_env) | Class environment for resource naming. | `string` | n/a | yes |
+| <a name="input_instance_env"></a> [instance\_env](#input\_instance\_env) | Instance environment number for resource naming. | `number` | n/a | yes |
+| <a name="input_instance_resource"></a> [instance\_resource](#input\_instance\_resource) | Instance resource number for resource naming. | `number` | n/a | yes |
+| <a name="input_dashboard_body"></a> [dashboard\_body](#input\_dashboard\_body) | Detailed information about the dashboard, including widgets and layout, as a JSON string. | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | AWS region where the dashboard is managed. Defaults to the provider region when null. | `string` | `null` | no |
-| <a name="input_resource_names_map"></a> [resource\_names\_map](#input\_resource\_names\_map) | Map of resource names for the resource naming module. | <pre>map(object({<br/>    name       = string<br/>    max_length = number<br/>  }))</pre> | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_arn"></a> [arn](#output\_arn) | The ARN of the dashboard. |
-| <a name="output_dashboard_body"></a> [dashboard\_body](#output\_dashboard\_body) | The dashboard body JSON configured by the module. |
-| <a name="output_id"></a> [id](#output\_id) | The ID of the dashboard (same as the name). |
-| <a name="output_name"></a> [name](#output\_name) | The name of the dashboard. |
 | <a name="output_region"></a> [region](#output\_region) | The AWS region where resources are deployed. |
+| <a name="output_id"></a> [id](#output\_id) | The ID of the dashboard (same as the name). |
+| <a name="output_arn"></a> [arn](#output\_arn) | The ARN of the dashboard. |
+| <a name="output_name"></a> [name](#output\_name) | The name of the dashboard. |
+| <a name="output_dashboard_body"></a> [dashboard\_body](#output\_dashboard\_body) | The dashboard body JSON configured by the module. |
 <!-- END_TF_DOCS -->
