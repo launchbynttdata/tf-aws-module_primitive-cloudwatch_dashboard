@@ -10,28 +10,43 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-# -----------------------------------------------------------------------------
-# Required
-# -----------------------------------------------------------------------------
+variable "resource_names_map" {
+  description = "Map of resource names for the resource naming module."
+  type = map(object({
+    name       = string
+    max_length = number
+  }))
+}
 
-variable "dashboard_name" {
-  description = "Name of the CloudWatch dashboard. Must be unique per account and region. Maximum 255 characters."
+variable "logical_product_family" {
+  description = "Logical product family for resource naming."
   type        = string
+}
 
-  validation {
-    condition     = length(var.dashboard_name) >= 1 && length(var.dashboard_name) <= 255
-    error_message = "Dashboard name must be between 1 and 255 characters."
-  }
+variable "logical_product_service" {
+  description = "Logical product service for resource naming."
+  type        = string
+}
+
+variable "class_env" {
+  description = "Class environment for resource naming."
+  type        = string
+}
+
+variable "instance_env" {
+  description = "Instance environment number for resource naming."
+  type        = number
+}
+
+variable "instance_resource" {
+  description = "Instance resource number for resource naming."
+  type        = number
 }
 
 variable "dashboard_body" {
   description = "Detailed information about the dashboard, including widgets and layout, as a JSON string."
   type        = string
 }
-
-# -----------------------------------------------------------------------------
-# Optional
-# -----------------------------------------------------------------------------
 
 variable "region" {
   description = "AWS region where the dashboard is managed. Defaults to the provider region when null."

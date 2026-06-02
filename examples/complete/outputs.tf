@@ -10,20 +10,27 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-resource "random_integer" "cake_pos" {
-  max = var.length - 2
-  min = 1
+output "region" {
+  description = "The AWS region where resources are deployed."
+  value       = data.aws_region.current.name
 }
 
-
-module "cake_prefix" {
-  source = "../.."
-
-  length = random_integer.cake_pos.result
+output "id" {
+  description = "The ID of the dashboard."
+  value       = module.dashboard.id
 }
 
-module "cake_suffix" {
-  source = "../.."
+output "arn" {
+  description = "The ARN of the dashboard."
+  value       = module.dashboard.arn
+}
 
-  length = (var.length - 1) - random_integer.cake_pos.result
+output "name" {
+  description = "The name of the dashboard."
+  value       = module.dashboard.name
+}
+
+output "dashboard_body" {
+  description = "The dashboard body JSON configured by the module."
+  value       = module.dashboard.dashboard_body
 }
