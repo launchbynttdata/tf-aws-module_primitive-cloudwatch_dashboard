@@ -10,7 +10,27 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-output "string" {
-  description = "The random string generated from the configured inputs."
-  value       = random_string.string.result
+output "id" {
+  description = "The ID of the dashboard (same as the name)."
+  value       = aws_cloudwatch_dashboard.dashboard.id
+}
+
+output "name" {
+  description = "The name of the dashboard."
+  value       = aws_cloudwatch_dashboard.dashboard.dashboard_name
+}
+
+output "arn" {
+  description = "The ARN of the dashboard."
+  value       = aws_cloudwatch_dashboard.dashboard.dashboard_arn
+}
+
+output "dashboard_body" {
+  description = "Dashboard body as a canonical JSON string (normalized from input)."
+  value       = local.dashboard_body
+}
+
+output "dashboard_body_raw" {
+  description = "Dashboard body JSON string as returned by AWS."
+  value       = aws_cloudwatch_dashboard.dashboard.dashboard_body
 }

@@ -10,8 +10,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-resource "random_string" "string" {
-  length  = var.length
-  numeric = var.number
-  special = var.special
+locals {
+  # Normalize JSON so config matches AWS canonical form and plans stay idempotent.
+  dashboard_body = jsonencode(jsondecode(var.dashboard_body))
+}
+
+resource "aws_cloudwatch_dashboard" "dashboard" {
+  dashboard_name = var.dashboard_name
+  dashboard_body = local.dashboard_body
+  region         = var.region
 }

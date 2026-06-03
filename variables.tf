@@ -10,25 +10,36 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-variable "length" {
-  description = "Length of the random string to generate."
-  type        = number
-  default     = 24
+# -----------------------------------------------------------------------------
+# Required
+# -----------------------------------------------------------------------------
+
+variable "dashboard_name" {
+  description = "Name of the CloudWatch dashboard. Must be unique per account and region. Maximum 255 characters."
+  type        = string
 
   validation {
-    condition     = var.length > 0 && var.length < 100
-    error_message = "Length must be a positive integer less than 100."
+    condition     = length(var.dashboard_name) >= 1 && length(var.dashboard_name) <= 255
+    error_message = "Dashboard name must be between 1 and 255 characters."
   }
 }
 
-variable "number" {
-  description = "Whether the random string should include numbers. Defaults to true."
-  type        = bool
-  default     = true
+variable "dashboard_body" {
+  description = "Detailed information about the dashboard, including widgets and layout, as a valid JSON string."
+  type        = string
+
+  validation {
+    condition     = can(jsondecode(var.dashboard_body))
+    error_message = "dashboard_body must be valid JSON."
+  }
 }
 
-variable "special" {
-  description = "Whether the random string should include special characters. Defaults to false."
-  type        = bool
-  default     = false
+# -----------------------------------------------------------------------------
+# Optional
+# -----------------------------------------------------------------------------
+
+variable "region" {
+  description = "AWS region where the dashboard is managed. Defaults to the provider region when null."
+  type        = string
+  default     = null
 }
