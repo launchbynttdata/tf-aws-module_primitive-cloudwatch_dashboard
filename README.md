@@ -69,12 +69,6 @@ Shared configuration and workflow files are largely managed through [launch-terr
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.10 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.100, < 7.0 |
 
-## Providers
-
-| Name | Version |
-|------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.61.0 |
-
 ## Modules
 
 No modules.
@@ -89,17 +83,17 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_dashboard_name"></a> [dashboard\_name](#input\_dashboard\_name) | Name of the CloudWatch dashboard. Must be unique per account and region. Maximum 255 characters. | `string` | n/a | yes |
 | <a name="input_dashboard_body"></a> [dashboard\_body](#input\_dashboard\_body) | Detailed information about the dashboard, including widgets and layout, as a valid JSON string. | `string` | n/a | yes |
+| <a name="input_dashboard_name"></a> [dashboard\_name](#input\_dashboard\_name) | Name of the CloudWatch dashboard. Must be unique per account and region. Maximum 255 characters. | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | AWS region where the dashboard is managed. Defaults to the provider region when null. | `string` | `null` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_id"></a> [id](#output\_id) | The ID of the dashboard (same as the name). |
-| <a name="output_name"></a> [name](#output\_name) | The name of the dashboard. |
 | <a name="output_arn"></a> [arn](#output\_arn) | The ARN of the dashboard. |
 | <a name="output_dashboard_body"></a> [dashboard\_body](#output\_dashboard\_body) | Dashboard body as a canonical JSON string (normalized from input). |
 | <a name="output_dashboard_body_raw"></a> [dashboard\_body\_raw](#output\_dashboard\_body\_raw) | Dashboard body JSON string as returned by AWS. |
+| <a name="output_id"></a> [id](#output\_id) | The ID of the dashboard (same as the name). |
+| <a name="output_name"></a> [name](#output\_name) | The name of the dashboard. |
 <!-- END_TF_DOCS -->

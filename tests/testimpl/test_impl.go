@@ -31,9 +31,9 @@ func normalizeDashboardBody(t *testing.T, body string) string {
 func TestComposableComplete(t *testing.T, ctx types.TestContext) {
 	t.Run("VerifyTerraformOutputs", func(t *testing.T) {
 		opts := ctx.TerratestTerraformOptions()
-		id := terraform.Output(t, opts, "id")
-		name := terraform.Output(t, opts, "name")
-		arn := terraform.Output(t, opts, "arn")
+		id := terraform.OutputContext(t, context.Background(), opts, "id")
+		name := terraform.OutputContext(t, context.Background(), opts, "name")
+		arn := terraform.OutputContext(t, context.Background(), opts, "arn")
 
 		assert.Equal(t, name, id, "id should equal name for CloudWatch dashboard")
 		assert.Regexp(t, `^arn:aws:cloudwatch:.*:dashboard/`, arn, "ARN should match CloudWatch dashboard format")
@@ -42,9 +42,9 @@ func TestComposableComplete(t *testing.T, ctx types.TestContext) {
 
 	t.Run("VerifyDashboardViaAPI", func(t *testing.T) {
 		opts := ctx.TerratestTerraformOptions()
-		dashboardName := terraform.Output(t, opts, "name")
-		region := terraform.Output(t, opts, "region")
-		expectedBody := normalizeDashboardBody(t, terraform.Output(t, opts, "dashboard_body"))
+		dashboardName := terraform.OutputContext(t, context.Background(), opts, "name")
+		region := terraform.OutputContext(t, context.Background(), opts, "region")
+		expectedBody := normalizeDashboardBody(t, terraform.OutputContext(t, context.Background(), opts, "dashboard_body"))
 
 		client := getCloudWatchClient(t, region)
 
@@ -60,8 +60,8 @@ func TestComposableComplete(t *testing.T, ctx types.TestContext) {
 
 	t.Run("PutDashboardAndVerifyUpdate", func(t *testing.T) {
 		opts := ctx.TerratestTerraformOptions()
-		dashboardName := terraform.Output(t, opts, "name")
-		region := terraform.Output(t, opts, "region")
+		dashboardName := terraform.OutputContext(t, context.Background(), opts, "name")
+		region := terraform.OutputContext(t, context.Background(), opts, "region")
 		updatedBody := `{"widgets":[{"type":"text","x":0,"y":0,"width":24,"height":1,"properties":{"markdown":"Updated by functional test"}}]}`
 
 		client := getCloudWatchClient(t, region)
@@ -83,17 +83,17 @@ func TestComposableComplete(t *testing.T, ctx types.TestContext) {
 func TestComposableCompleteReadOnly(t *testing.T, ctx types.TestContext) {
 	t.Run("VerifyTerraformOutputs", func(t *testing.T) {
 		opts := ctx.TerratestTerraformOptions()
-		id := terraform.Output(t, opts, "id")
-		name := terraform.Output(t, opts, "name")
+		id := terraform.OutputContext(t, context.Background(), opts, "id")
+		name := terraform.OutputContext(t, context.Background(), opts, "name")
 
 		assert.Equal(t, name, id, "id should equal name for CloudWatch dashboard")
 	})
 
 	t.Run("VerifyDashboardExistsViaAPI", func(t *testing.T) {
 		opts := ctx.TerratestTerraformOptions()
-		dashboardName := terraform.Output(t, opts, "name")
-		region := terraform.Output(t, opts, "region")
-		expectedBody := normalizeDashboardBody(t, terraform.Output(t, opts, "dashboard_body"))
+		dashboardName := terraform.OutputContext(t, context.Background(), opts, "name")
+		region := terraform.OutputContext(t, context.Background(), opts, "region")
+		expectedBody := normalizeDashboardBody(t, terraform.OutputContext(t, context.Background(), opts, "dashboard_body"))
 
 		client := getCloudWatchClient(t, region)
 
